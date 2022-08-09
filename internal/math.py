@@ -255,6 +255,27 @@ def compute_tv_norm(values, losstype='l2', weighting=None):  # pylint: disable=g
     loss = loss * weighting
   return loss
 
+  # v_1_00 = values[:, :-1, :-1]
+  # v_1_01 = values[:, :-1, 1:]
+  # v_1_10 = values[:, 1:, :-1]
+  # v11 = values[:, 1:-1, 1:-1]
+  # v12 = values[:, :-2, 1:-1]
+  # v10 = values[:, 2:, 1:-1]
+  # v21 = values[:, 1:-1, :-2]
+  # v01 = values[:, 1:-1, 2:]
+
+  # if losstype == 'l2':
+  #   loss_1 = ((v_1_00 - v_1_01) ** 2) + ((v_1_00 - v_1_10) ** 2)
+  #   loss_2 = ((v12 + v10 - v11 * 2) ** 2) + ((v21 + v01 - v11 * 2) ** 2)
+  # elif losstype == 'l1':
+  #   loss_1 = jnp.abs(v_1_00 - v_1_01) + jnp.abs(v_1_00 - v_1_10)
+  #   loss_2 = jnp.abs(v12 + v10 - v11 * 2) + jnp.abs(v21 + v01 - v11 * 2)
+  # else:
+  #   raise ValueError('Not supported losstype.')
+  # loss = 0.5 * (loss_1[:, 1:, 1:] + loss_2)
+  # if weighting is not None:
+  #   loss = loss * weighting
+  # return loss
 
 def compute_tvnorm_weight(step, max_step, weight_start=0.0, weight_end=0.0):
   """Computes loss weight for tv norm."""

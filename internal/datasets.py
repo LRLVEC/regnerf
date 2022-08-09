@@ -1355,7 +1355,7 @@ class DTU(Dataset):
     print('Using following indices', indices)
 
     mask_path = config.dtu_mask_path
-    idr_scans = ['scan40', 'scan55', 'scan63', 'scan110', 'scan114']
+    idr_scans = ['scan24', 'scan40', 'scan55', 'scan63', 'scan110', 'scan114']
     if config.dtu_scan in idr_scans:
       maskf_fn = lambda x: os.path.join(  # pylint: disable=g-long-lambda
           mask_path, config.dtu_scan, 'mask', f'{x:03d}.png')

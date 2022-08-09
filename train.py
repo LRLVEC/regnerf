@@ -148,6 +148,7 @@ def train_step(
               reshape_to_patch(
                   rendering['acc'],
                   1)[:, :-1, :-1]) * config.depth_tvnorm_mask_weight
+                  # 1)[:, 1:-1, 1:-1]) * config.depth_tvnorm_mask_weight
           losses_georeg.append(
               math.compute_tv_norm(depth, config.depth_tvnorm_type,
                                    weighting).mean())
